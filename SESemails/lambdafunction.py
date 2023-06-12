@@ -11,7 +11,7 @@ def lambda_handler(event, context):
             'Source': 'ravicandoitbetter@gmail.com',
             'Destination': {
                 'ToAddresses': [
-                    'lokeshanantha69@gmail.com'
+                    recipient
                 ]
             },
             'Message': {
