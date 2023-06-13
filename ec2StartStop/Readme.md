@@ -6,6 +6,31 @@ The goal of this project is to automate the start and stop operations of Amazon 
 
 1. Create an IAM role: Start by creating an IAM role with the necessary permissions to manage EC2 instances. The role should have permissions to start and stop instances using the EC2 API. Note down the ARN (Amazon Resource Name) of the IAM role for later use.
 
+	```json
+	{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:StartInstances",
+                "ec2:StopInstances"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "arn:aws:logs:*:*:*"
+        }
+    ]
+}
+,,,
+
 2. Create a Lambda function: Create a new Lambda function in the AWS Management Console. Choose the appropriate runtime (e.g., Python 3.8) and configure the function with the IAM role created in step 1.
 
 3. Write the Lambda function code: In the Lambda function code editor, write the code that checks the current time and starts or stops the EC2 instance accordingly. Use the code snippet provided earlier in this conversation as a starting point. Replace 'your_region_name' with the appropriate AWS region code and 'your_instance_id' with the actual ID of the EC2 instance you want to control.
