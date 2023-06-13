@@ -1,28 +1,23 @@
 import boto3
-
 import datetime
 
-def lambda_handler(event, context): 
-    ec2_client = boto3.client('ec2')
+ec2 = boto3.client('ec2', region_name='ap-south-1')
 
-    # Define the EC2 instance IDs that you want to stop/start 
-    instance_ids = ['i-02c42e0d76819611c']
-
-    # Get the current time
-
-    current_time = datetime.datetime.now().time()
-
-    # Define the start and stop times in 24-hour format (UTC)
-
-    start_time = datetime.time(9, 0) # 9:00 AM UTC 
-    stop_time = datetime.time(18, 0) # 6:00 PM UTC
-
-    # Determine if it's within the start and stop time range 
-    if start_time <= current_time <= stop_time:
-        #Start the instances
-        ec2_client.start_instances(InstanceIds=instance_ids)
-        print("EC2 instances started.")
+def lambda_handler(event, context):
+    instance_id = 'i-076cf799ef3dfa540'
+    
+    current_time_utc = datetime.datetime.utcnow()
+    ist_offset = datetime.timedelta(hours=5, minutes=30)
+    current_time_ist = current_time_utc + ist_offset
+    print('current time: {}'.format(current_time_ist))
+    
+    
+    if current_time_ist.hour >= 9 and current_time_ist.hour < 18 :
+        # Start the instance
+        ec2.start_instances(InstanceIds=[instance_id])
+        print('Instance started: {}'.format(instance_id))
     else:
-        #Stop the instances
-        ec2_client.stop_timeinstances(InstanceIds=instance_ids)
-        print("EC2 instances stopped.")
+        # Stop the instance
+        ec2.stop_instances(InstanceIds=[instance_id])
+        print('Instance stopped: {}'.format(instance_id))
+
