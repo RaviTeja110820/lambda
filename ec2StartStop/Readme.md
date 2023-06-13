@@ -12,20 +12,20 @@ The goal of this project is to automate the start and stop operations of Amazon 
 
 4. Configure CloudWatch Events: In the AWS Management Console, go to the CloudWatch service. Create a new rule that triggers the Lambda function at the desired schedule (e.g., 9 AM and 6 PM daily). Specify the rule pattern or cron expression to define the schedule.
 
-	. In the navigation pane, click on "Events" under the "Events" section.
-	. Click on "Create rule" to create a new rule.
-	. Under "Event Source", select "Schedule".
-	. In the "Fixed rate of" section, enter 13 hours. This means the rule will trigger every 13 hours, starting from the time you create the rule.
-	. In the "Cron expression" section, enter 0 9,18 * * ? *. This expression corresponds to triggering the rule at 9 AM and 6 PM every day.
-	. The 0 represents the minute (0 minutes past the hour).
-	. The 9,18 represents the hour (9 AM and 6 PM).
-	. The * * ? * represents the rest of the fields for day-of-month, month, day-of-week, and year, allowing the rule to run every day.
-	. Under "Targets", click on "Add target" and select your Lambda function from the dropdown list.
-	. Configure any additional settings as needed.
-	. Click on "Configure details".
-	. Provide a name and description for the rule.
-	. Review the settings and click on "Create rule" to save it.
-	> CloudWatch Events will now trigger your Lambda function at 9 AM and 6 PM daily based on the specified cron expression.
+. In the navigation pane, click on "Events" under the "Events" section.
+. Click on "Create rule" to create a new rule.
+. Under "Event Source", select "Schedule".
+. In the "Fixed rate of" section, enter 13 hours. This means the rule will trigger every 13 hours, starting from the time you create the rule.
+. In the "Cron expression" section, enter 0 9,18 * * ? *. This expression corresponds to triggering the rule at 9 AM and 6 PM every day.
+. The 0 represents the minute (0 minutes past the hour).
+. The 9,18 represents the hour (9 AM and 6 PM).
+. The * * ? * represents the rest of the fields for day-of-month, month, day-of-week, and year, allowing the rule to run every day.
+. Under "Targets", click on "Add target" and select your Lambda function from the dropdown list.
+. Configure any additional settings as needed.
+. Click on "Configure details".
+. Provide a name and description for the rule.
+. Review the settings and click on "Create rule" to save it.
+> CloudWatch Events will now trigger your Lambda function at 9 AM and 6 PM daily based on the specified cron expression.
 
 5. Test and monitor: Test the setup by manually triggering the CloudWatch Events rule and verify that the Lambda function starts or stops the EC2 instance as expected. Monitor the CloudWatch Logs for the Lambda function to troubleshoot any issues and ensure that the function is executed correctly at the scheduled times.
 
