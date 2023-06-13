@@ -28,9 +28,7 @@ The goal of this project is to automate the start and stop operations of Amazon 
             "Resource": "arn:aws:logs:*:*:*"
         }
     ]
-}
-
-,,,
+    }
 
 2. Create a Lambda function: Create a new Lambda function in the AWS Management Console. Choose the appropriate runtime (e.g., Python 3.8) and configure the function with the IAM role created in step 1.
 
